@@ -1,0 +1,86 @@
+[
+    {
+      "id": 1,
+      "name": "Website Development",
+      "price": 8400,
+      "rating": 5,
+      "image": "https://i.ibb.co/BGv611b/product-1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Social Media Management",
+      "price": 8700,
+      "rating": 5,
+      "image": "https://i.ibb.co/pyhVVjX/product-2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Brand Design & Strategy",
+      "price": 8100,
+      "rating": 4,
+      "image": "https://i.ibb.co/zSV8zk4/product-3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Email Marketing",
+      "price": 850,
+      "rating": 4,
+      "image": "https://i.ibb.co/CJGqrKG/product-4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "105 DISK",
+      "price": 7900,
+      "rating": 5,
+      "image": "https://i.ibb.co/vjKXHTC/product-5.jpg"
+    },
+    {
+      "id": 6,
+      "name": "FORCE ETAP AXS-1 DISC",
+      "price": 8700,
+      "rating": 4,
+      "image": "https://i.ibb.co/7vmknK5/product-6.jpg"
+    },
+    {
+      "id": 7,
+      "name": "DURA ACE S16 DISK",
+      "price": 6400,
+      "rating": 5,
+      "image": "https://i.ibb.co/4fNYbpn/product-7.jpg"
+    },
+    {
+      "id": 8,
+      "name": "RED ETAP AXS-4 DISK",
+      "price": 6800,
+      "rating": 4,
+      "image": "https://i.ibb.co/85DQnxX/product-8.jpg"
+    },
+    {
+      "id": 9,
+      "name": "FORCE ETAP AXS-12 DISC",
+      "price": 7700,
+      "rating": 4,
+      "image": "https://i.ibb.co/VSQ9w1H/product-9.jpg"
+    },
+    {
+      "id": 10,
+      "name": "ULTREGA G15 DISK",
+      "price": 8400,
+      "rating": 4,
+      "image": "https://i.ibb.co/chnSsgP/product-10.jpg"
+    },
+    {
+      "id": 11,
+      "name": "RED ETAP AXS-2 DISK",
+      "price": 7500,
+      "rating": 4,
+      "image": "https://i.ibb.co/yhRxNxP/product-11.jpg"
+    },
+    {
+      "id": 12,
+      "name": "107 DISK",
+      "price": 6550,
+      "rating": 4,
+      "image": "https://i.ibb.co/SvsZ3m0/product-12.jpg"
+    }
+  ]
