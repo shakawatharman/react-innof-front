@@ -1,8 +1,9 @@
-import { Box, Button, Container, Grid, Link, Typography,ImageListItem,ImageList } from '@material-ui/core';
+import { Box, Button, Container, Grid, Typography,ImageListItem,ImageList } from '@material-ui/core';
 import React from 'react';
 import { useStyles } from './FooterStyle';
 import logo from '../../assets/img/innofLogo.png';
 import { ArrowLeftSharp, Email, LocationCity, Person, Phone, PhoneCallback, WebAssetOutlined } from '@material-ui/icons';
+import { Link, NavLink } from 'react-router-dom';
 
 const Footer = () => {
     const classes = useStyles()
@@ -14,16 +15,16 @@ const Footer = () => {
                         <Grid item xs={12} sm={4} md={3}>
                             <div className={classes.brandinfo}>
                             <img className={classes.logo} src={logo} alt="agency" />
-                            <Typography variant='body2'>lobortis mattis, turpis lacus placerat tortor, quis convallis metus, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</Typography>
+                            <Typography variant='body2'>INNOF is Custom software development & web design company since 2010 in Bangladesh</Typography>
                             </div>
                         </Grid>
                         <Grid item xs={12} sm={4} md={2}>
                             <Typography className={classes.footerTitle} variant='h6'>Footer Menu</Typography>
                             <Box className={classes.footerMenu} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                                <Link href="#"><Button><ArrowLeftSharp /> Home</Button></Link>
-                                <Link href="#"><Button><ArrowLeftSharp />Service</Button></Link>
-                                <Link href="#"><Button><ArrowLeftSharp />About</Button></Link>
-                                <Link href="#"><Button><ArrowLeftSharp />Contact</Button></Link>
+                                <NavLink to="/"><Button><ArrowLeftSharp /> Home</Button></NavLink>
+                                <NavLink to="/services"><Button><ArrowLeftSharp />Service</Button></NavLink>
+                                <NavLink to="/about"><Button><ArrowLeftSharp />About</Button></NavLink>
+                                <NavLink to="/contact"><Button><ArrowLeftSharp />Contact</Button></NavLink>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
@@ -47,7 +48,7 @@ const Footer = () => {
                                  <LocationCity /><Typography gutterBottom variant='body1'>90 Barnard St, Suite 191 <br />United States, GA 22222</Typography>
                              </div>
                              <div className={classes.contactItem}>
-                                 <WebAssetOutlined /><Typography gutterBottom variant='body1'> www.domain.com</Typography>
+                                 <WebAssetOutlined /><Typography gutterBottom variant='body1'> https://innof-a77a1.web.app/</Typography>
                              </div>
                              <div className={classes.contactItem}>
                                  <Email /><Typography gutterBottom variant='body1'>email@domian.com</Typography>
