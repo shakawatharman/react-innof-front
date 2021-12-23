@@ -24,12 +24,15 @@ const Navbar = () => {
               <Toolbar className={classes.toolbar}>
                    
                     <img className={classes.logo} src={logo} alt="logo" />
+                    {/* <Typography variant='h2'>INNOF</Typography><br />
+                    <Typography>Innovation Factory</Typography> */}
                     
                    <Box className={classes.menu} sx={{ flexGrow: 1 }}>
                         <NavLink to="/"><Button>Home</Button></NavLink>
                         <NavLink to="/services"><Button>Services</Button></NavLink>
                         <NavLink to="/about"><Button>About</Button></NavLink>
                         <NavLink to="/contact"><Button>Contact</Button></NavLink>
+                        <NavLink to="/dashboard"><Button>Dashboard</Button></NavLink>
                     </Box>
                 
                    <div className={classes.login}>

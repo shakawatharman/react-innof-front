@@ -20,10 +20,8 @@ const Services = () => {
             <PageBanner></PageBanner>
             <Box style={{padding:"50px 0"}} className={classes.sectionTeam}>
                 <Container>
-                
                     <Typography variant='h6'>We help companies to create great</Typography>
                     <Typography className={classes.sectionHeading} variant='h3'>---</Typography>
-                    
                     <Grid container spacing={4}>
                         {
                             services.map((service)=>
@@ -31,7 +29,6 @@ const Services = () => {
                             )
 
                         }
-                        
                     </Grid>
                 </Container>
             </Box>

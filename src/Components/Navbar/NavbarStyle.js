@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 export const useStyles = makeStyles((theme)=>({
     appbar:{
-        backgroundColor:'#000000de',
+        backgroundColor:'#fff',
         position:'relative'
     },
     toolbar: {
@@ -20,9 +20,9 @@ export const useStyles = makeStyles((theme)=>({
     menu:{
         textAlign:'right',
         marginRight:theme.spacing(5),
-        color:'#fff',
+        color:'#000',
         '& span':{
-            color:'#fff'
+            color:'#000'
         },
         [theme.breakpoints.down('xs')]:{
             display:(props)=>(props.menuOpen ? 'flex':'none'),

@@ -20,6 +20,9 @@ const useFirebase = () => {
         .then((userCredential) => {
             const newUser = { email, displayName: name };
             setUser(newUser)
+            setError('')
+            // Save user data to database 
+            saveUserData( email, name, 'POST' );
             // send name to firebase to update
             updateProfile(auth.currentUser, {
                 displayName: name
@@ -30,7 +33,7 @@ const useFirebase = () => {
                 // An error occurred
                 // ...
               });
-            setError('')
+            
             navigate('/');
         })
         .catch((error) => {
@@ -79,6 +82,8 @@ const useFirebase = () => {
             const user = result.user;
             setError('')
             setUser(user)
+            // Save user data to database 
+            saveUserData( user.email, user.displayName, 'PUT' );
 
             // Redirect after Signed in 
             const destination = location?.state?.from || '/';
@@ -118,6 +123,22 @@ const useFirebase = () => {
         }).catch((error)=>{
             // an error occured.
         }).finally(()=>setLoading(false))
+    }
+
+    /**
+     * Save User Data
+     */
+    const saveUserData = ( email, displayName, method ) => {
+        const user = { email, displayName }
+        
+        fetch("https://powerful-peak-13797.herokuapp.com/users", {
+          method: method,
+          headers: {
+              "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+          })
+        .then()
     }
 
      /**

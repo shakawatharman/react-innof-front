@@ -26,7 +26,7 @@ const Service = () => {
      */
 
     useEffect(()=>{
-        fetch(`http://localhost:4000/service/${id}`)
+        fetch(`https://powerful-peak-13797.herokuapp.com/service/${id}`)
         .then(res => res.json())
         .then(data => setService(data))
     },[id]);
@@ -61,7 +61,7 @@ const Service = () => {
 
         e.preventDefault();
 
-        fetch("http://localhost:4000/orders", {
+        fetch("https://powerful-peak-13797.herokuapp.com/orders", {
         method: "POST",
         headers: {
             "content-type": "application/json",
