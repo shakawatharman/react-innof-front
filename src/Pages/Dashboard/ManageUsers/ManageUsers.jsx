@@ -10,13 +10,13 @@ import Paper from '@mui/material/Paper';
 
 import { useStyles } from './ManageUsersStyle';
 import useAuth from '../../../Hooks/useAuth';
-import { Chip, Typography } from '@mui/material';
-import { FormControl, MenuItem, Select } from '@material-ui/core';
+import { Chip, Stack, Typography } from '@mui/material';
+import { Avatar, FormControl, MenuItem, Select } from '@material-ui/core';
 
 const ManageUsers = () => {
 
     const classes = useStyles()
-    const [role, setRole] = useState("");
+    const [ role, setRole ] = useState("");
     const [ allusers, setAllusers ] = useState([]);
     const { user } =  useAuth();
 
@@ -31,6 +31,10 @@ const ManageUsers = () => {
         const handleRoleChange = (e) => {
             setRole(e.target.value);
         };
+        const handleRoleUpdate = (id) => {
+            
+            console.log(role,id)
+        }
 
     return (
         <>
@@ -55,21 +59,28 @@ const ManageUsers = () => {
                         key={each._id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">{each.displayName}</TableCell>
+                            <TableCell component="th" scope="row">
+                                <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={3}>
+                                <Avatar alt={each.displayName} src={each.photoURL} />
+                                <Typography>{each.displayName}</Typography>
+                                </Stack>
+                            </TableCell>
                             <TableCell align="right">{each.email}</TableCell>
                             <TableCell align="right">
                                 {/* {each.role} */}
                                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                                     <Select
-                                    value={role}
+                                    defaultValue={each.role === 'admin' ? 'admin' : 'user' }
                                     onChange={handleRoleChange}
                                     >
-                                    <MenuItem value="User">User</MenuItem>
-                                    <MenuItem value="Admin">Admin</MenuItem>
+                                    <MenuItem value="user">User</MenuItem>
+                                    <MenuItem value="admin">Admin</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
-                            <TableCell align="right"><Chip label="UPDATE" color="warning" size="small" /></TableCell>
+                            <TableCell align="right">
+                                <Chip onClick={()=>handleRoleUpdate(each._id)} style={{cursor:'pointer'}} label="UPDATE" color="warning" size="small" />
+                            </TableCell>
                         </TableRow>
                     )
                     }

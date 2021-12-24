@@ -25,6 +25,9 @@ import AddService from '../AddService/AddService';
 import AddTeamMember from '../AddTeamMember/AddTeamMember';
 import AddReview from '../AddReview/AddReview';
 import ManageUsers from '../ManageUsers/ManageUsers';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import { Avatar, Button, Chip } from '@mui/material';
+import { useStyles } from "./DashboardStyle"
 
 const drawerWidth = 200;
 
@@ -33,9 +36,8 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-//   let { url } = useMatch();
-  let { slug } = useParams()
-  const { user } = useAuth();
+  const classes = useStyles()
+  const { user, admin, logout } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -71,30 +73,37 @@ function Dashboard(props) {
                 <ListItemText primary='My Order' />
             </ListItem>
           </Link> */}
-        {['My Orders', 'Add Review'].map((text, index) => (
-          <Link key={text} to={`/dashboard/${text.replace(/\s/g, '')}`}>
-            <ListItem button>
-                <ListItemIcon style={{minWidth:30}}>
-                <ArrowCircleRightOutlined />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+        </List>
+      {
+        !admin && 
+          <List>
+            {['My Orders', 'Add Review'].map((text, index) => (
+            <Link key={text} to={`/dashboard/${text.replace(/\s/g, '')}`}>
+              <ListItem button>
+                  <ListItemIcon style={{minWidth:30}}>
+                  <ArrowCircleRightOutlined />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+              </ListItem>
+            </Link>
+            ))}
+          </List>
+      }
       <Divider />
-      <List>
-        {['Manage Users','Manage Orders','Manage Services', 'Add Service','Add Team Member','Make Admin','Payment'].map((text, index) => (
-          <Link key={text} to={`/dashboard/${text.replace(/\s/g, '')}`}>
-            <ListItem button>
-                <ListItemIcon style={{minWidth:30}}>
-                <ArrowCircleRightOutlined />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+      { admin && 
+          <List>
+            {['Manage Users','Manage Orders','Manage Services', 'Add Service','Add Team Member','Make Admin'].map((text, index) => (
+              <Link className={classes.menulink} key={text} to={`/dashboard/${text.replace(/\s/g, '')}`}>
+                <ListItem button>
+                    <ListItemIcon style={{minWidth:30}}>
+                    <ArrowCircleRightOutlined />
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+      }
     </div>
   );
 
@@ -121,8 +130,21 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Dashboard
           </Typography>
+          {
+            user?.email &&
+            <>
+            <Chip size="medium"
+                avatar={<Avatar alt="Sajib" src={user.photoURL}></Avatar>}
+                label={user.displayName}
+                style={{marginLeft:40}}
+                variant="contained"
+                color="primary"
+                />
+              <Button onClick={logout} size="small" variant='' color="secondary">Logout</Button>
+            </>
+            }
         </Toolbar>
       </AppBar>
       <Box
@@ -166,6 +188,12 @@ function Dashboard(props) {
         <Typography paragraph></Typography>
 
         <Routes>
+              {
+                !admin ? <Route path="/" element={<MyOrders />} /> :
+                <Route path="/" element={<ManageOrders />} />
+              }
+
+
               <Route path="/ManageUsers" element={<ManageUsers />} />
               <Route path="/ManageOrders" element={<ManageOrders />} />
               <Route path="/ManageServices" element={<ManageServices />} />
@@ -173,6 +201,7 @@ function Dashboard(props) {
               <Route path="/AddService" element={<AddService />} />
               <Route path="/AddTeamMember" element={<AddTeamMember />} />
               <Route path="/AddReview" element={<AddReview />} />
+              <Route path="/MakeAdmin" element={<MakeAdmin />} />
         </Routes>
       </Box>
 

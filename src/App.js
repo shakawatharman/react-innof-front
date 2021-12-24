@@ -19,16 +19,9 @@ function App() {
             <Route path="/home" element={<Landing/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register />} />
-            <Route
-              path="/services"
-              element={
-                <PrivateRoute>
-                  <Services />
-                </PrivateRoute>
-              }
-            />
+            <Route path="/services" element={<PrivateRoute><Services /></PrivateRoute>} />
             <Route path="/service/:id" element={<Service />} />
-            <Route path="/dashboard/*" element={<Dashboard />} />
+            <Route path="/dashboard/*" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           </Routes>
 
         </BrowserRouter>

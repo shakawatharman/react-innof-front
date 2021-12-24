@@ -99,6 +99,7 @@ const Service = () => {
                         <Grid item sm={4} xs={12}>
                             <Box className={classes.serviceForm} >
                                 <Typography style={{marginBottom:30 }} variant='h6'>Purchase Our Service</Typography>
+                                <Typography style={{marginBottom:30 }} variant='h5'>Price ${service.price}</Typography>
                                 <form onSubmit={handlePurchaseSubmit}>
                                     <TextField
                                     onChange={handlePurchase}

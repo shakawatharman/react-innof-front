@@ -16,19 +16,25 @@ export const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down('sm')]:{
             width:150,
         },
+        [theme.breakpoints.down('xs')]:{
+            width:110,
+        },
     },
     menu:{
         textAlign:'right',
         marginRight:theme.spacing(5),
-        color:'#000',
         '& span':{
-            color:'#000'
+            color:'#000',
+            [theme.breakpoints.down('xs')]:{
+                color:'#fff',
+            },
         },
         [theme.breakpoints.down('xs')]:{
             display:(props)=>(props.menuOpen ? 'flex':'none'),
             position:'absolute',
             height:'100vh',
             top:'72px',
+            color:'#fff',
             backgroundColor:'#000000ed',
             flexDirection: 'column',
             width: 200,
@@ -45,6 +51,7 @@ export const useStyles = makeStyles((theme)=>({
         }
     },
     menuBtn:{
+        fill:'#000',
         display:'block',
         cursor:'pointer',
         marginRight:theme.spacing(2),

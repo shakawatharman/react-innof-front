@@ -9,12 +9,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Chip } from '@mui/material';
+import { Chip, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 const ManageOrders = () => {
     const [ manageOrder, setManageOrder ] = useState([]);
     const { user } =  useAuth();
 
+    /**
+     * Fetching Order Data
+     */
     useEffect(()=>{
         const URL = `https://powerful-peak-13797.herokuapp.com/manageorders`;
         fetch(URL)
@@ -22,7 +26,27 @@ const ManageOrders = () => {
             .then(data=>setManageOrder(data))
         },[user])
 
-        console.log("from manage order page", manageOrder)
+
+    /**
+     * Delete an order
+     */
+
+    const handleDeleteOrder = (id) => {
+        const proceed = window.confirm("Are you sure, you want to delete?");
+        if(proceed){
+            fetch(`https://powerful-peak-13797.herokuapp.com/manageorders/delete/${id}`,{
+            method: "DELETE",
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.deletedCount > 0) {
+            alert("deleted successfully");
+            const remaining = manageOrder.filter((pd) => pd._id !== id);
+            setManageOrder(remaining);
+            }
+        });
+        }
+    }
 
     return (
         <>
@@ -39,6 +63,7 @@ const ManageOrders = () => {
                         <TableCell align="right">Date</TableCell>
                         <TableCell align="right">Status</TableCell>
                         <TableCell align="right">Action</TableCell>
+                        <TableCell align="right">Delete</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -54,6 +79,11 @@ const ManageOrders = () => {
                             <TableCell align="right">12/2/2012</TableCell>
                             <TableCell align="right">{order.service_status}</TableCell>
                             <TableCell align="right"><Chip label="UPDATE" color="warning" size="small" /></TableCell>
+                            <TableCell align="right">
+                                <IconButton onClick={()=>handleDeleteOrder(order._id)} color="secondary" aria-label="add an alarm">
+                                    <Delete />
+                                </IconButton>
+                            </TableCell>
                         </TableRow>
                     )
                     }

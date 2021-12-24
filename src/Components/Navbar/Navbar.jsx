@@ -32,7 +32,7 @@ const Navbar = () => {
                         <NavLink to="/services"><Button>Services</Button></NavLink>
                         <NavLink to="/about"><Button>About</Button></NavLink>
                         <NavLink to="/contact"><Button>Contact</Button></NavLink>
-                        <NavLink to="/dashboard"><Button>Dashboard</Button></NavLink>
+                        {user.email && <NavLink to="/dashboard"><Button>Dashboard</Button></NavLink>}
                     </Box>
                 
                    <div className={classes.login}>
@@ -46,7 +46,8 @@ const Navbar = () => {
                             label={user.displayName}
                             variant="outlined"
                             color="primary"
-                            /><Button onClick={logout} size="small" variant='outlined' color="secondary">Logout</Button></>
+                            /><Button onClick={logout} size="small" variant='' color="secondary">Logout</Button>
+                        </>
                         }
                    </div>
                    {

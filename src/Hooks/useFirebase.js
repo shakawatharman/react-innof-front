@@ -6,6 +6,7 @@ initializeFirebase();
 
 const useFirebase = () => {
     const [user,setUser] = useState({})
+    const [admin,setAdmin] = useState(false);
     const [error,setError] = useState('')
     const [loading,setLoading] = useState(true)
 
@@ -83,7 +84,7 @@ const useFirebase = () => {
             setError('')
             setUser(user)
             // Save user data to database 
-            saveUserData( user.email, user.displayName, 'PUT' );
+            saveUserData( user.email, user.displayName, user.photoURL, 'PUT' );
 
             // Redirect after Signed in 
             const destination = location?.state?.from || '/';
@@ -128,8 +129,8 @@ const useFirebase = () => {
     /**
      * Save User Data
      */
-    const saveUserData = ( email, displayName, method ) => {
-        const user = { email, displayName }
+    const saveUserData = ( email, displayName, photoURL, method ) => {
+        const user = { email, displayName, photoURL }
         
         fetch("https://powerful-peak-13797.herokuapp.com/users", {
           method: method,
@@ -141,11 +142,23 @@ const useFirebase = () => {
         .then()
     }
 
+    /**
+     * Check if the user is a ADMIN or Not
+     */
+
+    fetch(`https://powerful-peak-13797.herokuapp.com/users/${user.email}`)
+      .then(res=>res.json())
+      .then(result=>{
+        console.log("isAdmin",result.admin)
+        setAdmin(result.admin)
+      },[user.email])
+
      /**
      * Retun Value
      */
     return {
         user,
+        admin,
         error,
         loading,
         registerUser,

@@ -16,6 +16,10 @@ export const useStyles = makeStyles((theme)=>({
         border:'8px solid #fff',
         marginBottom:30,
     },
+    serviceImage:{
+        maxHeight:100,
+        marginBottom:30
+    },
     serviceName:{
         textTransform:'uppercase',
 

@@ -14,9 +14,7 @@ const SectionFeatures = () => {
                 <Grid container spacing={3}>
                     
                     <Grid item xs={12} sm={6} md={6}>
-                        <Paper elevation={0}>
-                        <img className={classes.featureImg} src={img} alt="agency" />
-                        </Paper>
+                        <img className={classes.featureImg} src="https://i.ibb.co/2FC7T9J/service-seo.png" alt="agency" />
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>
                         <div className={classes.featureRight}>
