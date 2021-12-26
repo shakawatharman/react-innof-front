@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Components/Firebase/firebase.init";
-import { createUserWithEmailAndPassword, getAuth, updateProfile, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, getIdToken, updateProfile, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 initializeFirebase();
 
@@ -8,7 +8,8 @@ const useFirebase = () => {
     const [user,setUser] = useState({})
     const [admin,setAdmin] = useState(false);
     const [error,setError] = useState('')
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(true);
+    const [token,setToken] = useState("")
 
     const auth = getAuth();
 
@@ -23,7 +24,7 @@ const useFirebase = () => {
             setUser(newUser)
             setError('')
             // Save user data to database 
-            saveUserData( email, name, 'POST' );
+            saveUserData( email, name, '', 'POST' );
             // send name to firebase to update
             updateProfile(auth.currentUser, {
                 displayName: name
@@ -106,6 +107,8 @@ const useFirebase = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
               setUser(user)
+              //JWT TOKEN
+              getIdToken(user).then(idToken=>setToken(idToken))
             } else {
               setUser({})
             }
@@ -159,6 +162,7 @@ const useFirebase = () => {
     return {
         user,
         admin,
+        token,
         error,
         loading,
         registerUser,

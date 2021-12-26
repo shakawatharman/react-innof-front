@@ -61,7 +61,6 @@ const Service = () => {
     };
 
     ///setOrder(new_order);
-    console.log("Order Info", new_order);
 
     e.preventDefault();
 

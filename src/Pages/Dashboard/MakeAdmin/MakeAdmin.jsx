@@ -10,9 +10,11 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useStyles } from "./MakeAdminStyle";
+import useAuth from "../../../Hooks/useAuth";
 
 const MakeAdmin = () => {
   const [email, setEmail] = useState("");
+  const { token } = useAuth();
   const classes = useStyles();
 
   /*
@@ -26,20 +28,20 @@ const MakeAdmin = () => {
 
   const handleMakeAdminSubmit = (e) => {
     ///mmake admin;
-    console.log("make admin", email);
     e.preventDefault();
     const user = { email };
 
     fetch("https://powerful-peak-13797.herokuapp.com/users/admin", {
       method: "PUT",
       headers: {
+        authorization: `Bearer ${token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.modifiedCount) {
+        if (result.modifiedCount > 0) {
           alert("admin added");
         }
       });

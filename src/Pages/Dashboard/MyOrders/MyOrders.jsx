@@ -22,8 +22,6 @@ const MyOrders = () => {
       .then((data) => setMyOrder(data));
   }, [user]);
 
-  console.log("from my order page", myOrder);
-
   return (
     <>
       <Typography style={{ margin: "20px 0" }} variant="h5">

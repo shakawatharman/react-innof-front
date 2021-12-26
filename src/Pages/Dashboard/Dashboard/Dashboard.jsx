@@ -29,6 +29,7 @@ import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import UserReview from "../UserReview/UserReview";
 import { Avatar, Button, Chip } from "@mui/material";
 import { useStyles } from "./DashboardStyle";
+import AdminRoute from "../../../AdminRoute/AdminRoute";
 
 const drawerWidth = 200;
 
@@ -215,15 +216,64 @@ function Dashboard(props) {
             <Route path="/" element={<MyOrders />} />
           )}
 
-          <Route path="/ManageUsers" element={<ManageUsers />} />
-          <Route path="/ManageOrders" element={<ManageOrders />} />
-          <Route path="/ManageServices" element={<ManageServices />} />
+          <Route
+            path="/ManageUsers"
+            element={
+              <AdminRoute>
+                <ManageUsers />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/ManageOrders"
+            element={
+              <AdminRoute>
+                <ManageOrders />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/ManageServices"
+            element={
+              <AdminRoute>
+                <ManageServices />
+              </AdminRoute>
+            }
+          />
           <Route path="/MyOrders" element={<MyOrders />} />
-          <Route path="/AddService" element={<AddService />} />
-          <Route path="/AddTeamMember" element={<AddTeamMember />} />
+          <Route
+            path="/AddService"
+            element={
+              <AdminRoute>
+                <AddService />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/AddTeamMember"
+            element={
+              <AdminRoute>
+                <AddTeamMember />
+              </AdminRoute>
+            }
+          />
           <Route path="/AddReview" element={<AddReview />} />
-          <Route path="/MakeAdmin" element={<MakeAdmin />} />
-          <Route path="/UserReviews" element={<UserReview />} />
+          <Route
+            path="/MakeAdmin"
+            element={
+              <AdminRoute>
+                <MakeAdmin />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/UserReviews"
+            element={
+              <AdminRoute>
+                <UserReview />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </Box>
     </Box>
